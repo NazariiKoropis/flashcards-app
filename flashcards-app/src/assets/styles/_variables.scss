@@ -1,0 +1,41 @@
+
+$color-deep-night: #091540;
+$color-royal-blue: #1B2CC1;
+$color-neon-periwinkle: #7692FF;
+$color-frost-blue: #ABD2FA;
+
+$border-radius-sm: 16px;
+$border-radius: 24px;
+$border-radius-lg: 32px;
+
+$font-family-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+$font-size-body: 16px;
+
+$mobile-breakpoint: 480px;
+$tablet-breakpoint: 768px;
+$laptop-breakpoint: 1200px;
+$desktop-breakpoint: 1440px;
+$desktop-2k-breakpoint: 2560px;
+
+
+:root {
+  --bg-main: #{$color-deep-night};
+  --bg-surface: #{$color-royal-blue};
+  --bg-surface-light: #{rgba(118, 146, 255, 0.25)};
+  --bg-card: #{rgba(27, 44, 193, 0.4)};
+
+  --border-card: #{$color-neon-periwinkle};
+
+  --accent: #{$color-neon-periwinkle};
+  --accent-primary: #{$color-neon-periwinkle};
+  --accent-hover: #{$color-frost-blue};
+
+  --text-primary: #{$color-frost-blue};
+  --text-secondary: #{rgba(171, 210, 250, 0.7)};
+  --text-inverse: #{$color-deep-night};
+
+  --diff-easy: #2dd4bf;
+  --diff-medium: #fbbf24;
+  --diff-hard: #f87171;
+}

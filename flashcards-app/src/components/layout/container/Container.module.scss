@@ -1,0 +1,27 @@
+@use '@styles/mixins' as *;
+@use '@styles/variables' as *;
+
+.container {
+  width: 100%;
+  max-width: $desktop-2k-breakpoint;
+  margin-inline: auto;
+  padding-inline: 24px;
+
+  @include desktop {
+    max-width: $desktop-breakpoint;
+    padding-inline: 32px;
+  }
+
+  @include laptop {
+    max-width: $laptop-breakpoint;
+    padding-inline: 28px;
+  }
+
+  @include tablet {
+    padding-inline: 16px;
+  }
+
+  @include mobile {
+    padding-inline: 12px;
+  }
+}

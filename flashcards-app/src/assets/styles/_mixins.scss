@@ -1,0 +1,44 @@
+@use "./variables" as *;
+
+@mixin desktop {
+  @media (max-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (max-width: $laptop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: $mobile-breakpoint) {
+    @content;
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
