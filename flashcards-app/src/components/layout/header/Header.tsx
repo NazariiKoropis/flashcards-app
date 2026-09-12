@@ -1,47 +1,92 @@
 import Container from '@layout/container/Container'
-import { Search, User } from 'lucide-react'
+import Button from '@ui/Button'
+import { Plus, Search, Sparkles, User } from 'lucide-react'
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import styles from './Header.module.scss'
+
+interface NavLinkProps {
+	label: string
+	path: string
+}
 
 function Header() {
 	const [isAuth, setIsAuth] = useState(false)
 
+	const navLinks: NavLinkProps[] = [
+		{
+			label: 'Home',
+			path: '/'
+		},
+		{
+			label: 'Catalog',
+			path: '/catalog'
+		}
+	]
+
 	return (
-		<header>
+		<header className={styles.header}>
 			<Container>
-				<section className={styles.headerSection}>
+				<div className={styles.headerSection}>
 					<div className={styles.logo}>
-						<NavLink to="/">
-							<h2>My Flashcards</h2>
-						</NavLink>
+						<Link to="/">
+							<Sparkles
+								size={20}
+								color="#818cf8"
+							/>
+							<h2>Flashcards</h2>
+						</Link>
 						<nav className={styles.navLinks}>
-							<NavLink to="/">Home</NavLink>
-							<NavLink to="/catalog">Catalog</NavLink>
+							{navLinks.map(link => (
+								<NavLink
+									key={link.path}
+									to={link.path}
+									className={({ isActive }) => (isActive ? styles.active : '')}
+								>
+									{link.label}
+								</NavLink>
+							))}
 						</nav>
 					</div>
 
 					<div className={styles.search}>
+						<span className={styles.searchIcon}>
+							<Search size={16} />
+						</span>
 						<input
 							type="text"
-							placeholder="Search..."
+							placeholder="Search decks, tags..."
 						/>
-						<button type="button">
-							<Search />
-						</button>
 					</div>
 
 					<div className={styles.buttons}>
-						<button type="button">+ Create</button>
+						<Button
+							variant="primary"
+							size="sm"
+						>
+							<Plus size={16} />
+							<span>Create</span>
+						</Button>
 						{!isAuth ? (
-							<button type="button">Login</button>
+							<Button
+								variant="secondary"
+								size="sm"
+								onClick={() => setIsAuth(true)}
+							>
+								Login
+							</Button>
 						) : (
-							<button type="button">
-								<User />
-							</button>
+							<Button
+								variant="icon"
+								size="sm"
+								onClick={() => setIsAuth(false)}
+								title="Profile"
+							>
+								<User size={16} />
+							</Button>
 						)}
 					</div>
-				</section>
+				</div>
 			</Container>
 		</header>
 	)

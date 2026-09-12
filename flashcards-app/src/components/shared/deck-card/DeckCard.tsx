@@ -1,16 +1,26 @@
 import type { IDeck } from '@app-types/deck'
-import Button from '@ui/Button'
+import Button from '@ui/Button/Button'
 import { Globe, Lock } from 'lucide-react'
+import type React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './DeckCard.module.scss'
 
-function DeckCard({ deck }: { deck: IDeck }) {
+interface DeckCardProps {
+	deck: IDeck
+}
+
+function DeckCard({ deck }: DeckCardProps) {
 	const navigate = useNavigate()
+
+	const handleNavigate = (e: React.MouseEvent) => {
+		e.stopPropagation()
+		navigate(`/training/${deck.id}`)
+	}
 
 	return (
 		<div
 			className={styles.deck}
-			onClick={() => navigate(`/training/${deck.id}`)}
+			onClick={handleNavigate}
 		>
 			<header className={styles.deckHeader}>
 				<h3>{deck.name}</h3>
@@ -18,7 +28,7 @@ function DeckCard({ deck }: { deck: IDeck }) {
 			</header>
 
 			<div className={styles.deckBody}>
-				<p>{deck.description}</p>
+				<p>{deck.description || 'No description provided'}</p>
 				<div className={styles.tags}>
 					{deck?.tags?.map(tag => (
 						<span key={tag}>#{tag}</span>
@@ -29,18 +39,16 @@ function DeckCard({ deck }: { deck: IDeck }) {
 			<footer className={styles.deckFooter}>
 				<div className={styles.deckVisibility}>
 					{deck.visibility === 'private' ? (
-						<Lock size={16} />
+						<Lock size={14} />
 					) : (
-						<Globe size={16} />
+						<Globe size={14} />
 					)}
 					<span>{deck.visibility}</span>
 				</div>
 				<Button
 					variant="primary"
-					onClick={e => {
-						e.stopPropagation()
-						navigate(`/training/${deck.id}`)
-					}}
+					size="sm"
+					onClick={handleNavigate}
 				>
 					Study now
 				</Button>

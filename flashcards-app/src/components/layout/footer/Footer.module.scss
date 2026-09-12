@@ -1,0 +1,40 @@
+@use '@styles/variables' as *;
+@use '@styles/mixins' as *;
+
+.footer {
+  width: 100%;
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface);
+  padding: $space-6 0;
+  margin-top: auto;
+  color: var(--text-secondary);
+  font-size: $font-size-sm;
+}
+
+.footerContent {
+  @include flex-between;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $space-3;
+    text-align: center;
+  }
+
+  p {
+    color: var(--text-muted);
+  }
+
+  .links {
+    display: flex;
+    gap: $space-4;
+
+    a {
+      color: var(--text-secondary);
+      transition: color $transition-fast;
+
+      &:hover {
+        color: var(--text-primary);
+      }
+    }
+  }
+}

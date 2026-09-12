@@ -1,41 +1,171 @@
+// ==========================================
+// SCSS DESIGN TOKENS & VARIABLES
+// ==========================================
 
-$color-deep-night: #091540;
-$color-royal-blue: #1B2CC1;
-$color-neon-periwinkle: #7692FF;
-$color-frost-blue: #ABD2FA;
+// --- Color Palette: Neutrals (Slate / Zinc scale) ---
+$color-slate-950: #080c14;
+$color-slate-900: #0f172a;
+$color-slate-850: #141d32;
+$color-slate-800: #1e293b;
+$color-slate-700: #334155;
+$color-slate-600: #475569;
+$color-slate-500: #64748b;
+$color-slate-400: #94a3b8;
+$color-slate-300: #cbd5e1;
+$color-slate-200: #e2e8f0;
+$color-slate-100: #f1f5f9;
+$color-slate-50: #f8fafc;
+$color-white: #ffffff;
 
-$border-radius-sm: 16px;
-$border-radius: 24px;
-$border-radius-lg: 32px;
+// --- Color Palette: Brand & Accents (Modern Indigo & Violet) ---
+$color-primary-900: #312e81;
+$color-primary-800: #3730a3;
+$color-primary-700: #4338ca;
+$color-primary-600: #4f46e5;
+$color-primary-500: #6366f1;
+$color-primary-400: #818cf8;
+$color-primary-300: #a5b4fc;
+$color-primary-200: #c7d2fe;
+$color-primary-100: #e0e7ff;
 
-$font-family-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+$color-accent-purple: #8b5cf6;
+$color-accent-cyan: #06b6d4;
+$color-accent-teal: #14b8a6;
+$color-accent-pink: #ec4899;
 
-$font-size-body: 16px;
+// --- Color Palette: Status & Difficulties ---
+$color-success: #10b981; // Easy
+$color-success-light: #34d399;
+$color-warning: #f59e0b; // Medium
+$color-warning-light: #fbbf24;
+$color-danger: #ef4444;  // Hard
+$color-danger-light: #f87171;
+$color-info: #3b82f6;
 
+// --- Typography ---
+$font-family-main: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-family-mono: "JetBrains Mono", "Fira Code", monospace;
+
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-body: 1rem;     // 16px
+$font-size-md: 1.125rem;   // 18px
+$font-size-lg: 1.25rem;    // 20px
+$font-size-xl: 1.5rem;     // 24px
+$font-size-2xl: 1.875rem;  // 30px
+$font-size-3xl: 2.25rem;   // 36px
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// --- Border Radius ---
+$border-radius-xs: 6px;
+$border-radius-sm: 10px;
+$border-radius: 14px;
+$border-radius-md: 14px;
+$border-radius-lg: 20px;
+$border-radius-xl: 28px;
+$border-radius-full: 9999px;
+
+// --- Spacing Tokens ---
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 20px;
+$space-6: 24px;
+$space-8: 32px;
+$space-10: 40px;
+$space-12: 48px;
+
+// --- Breakpoints ---
 $mobile-breakpoint: 480px;
 $tablet-breakpoint: 768px;
-$laptop-breakpoint: 1200px;
-$desktop-breakpoint: 1440px;
-$desktop-2k-breakpoint: 2560px;
+$laptop-breakpoint: 1024px;
+$desktop-breakpoint: 1280px;
+$desktop-2k-breakpoint: 1536px;
 
+// --- Transitions ---
+$transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-bounce: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+// ==========================================
+// CSS CUSTOM PROPERTIES (ROOT THEME)
+// ==========================================
 
 :root {
-  --bg-main: #{$color-deep-night};
-  --bg-surface: #{$color-royal-blue};
-  --bg-surface-light: #{rgba(118, 146, 255, 0.25)};
-  --bg-card: #{rgba(27, 44, 193, 0.4)};
+  // --- Background Surfaces ---
+  --bg-main: #{$color-slate-950};
+  --bg-surface: #{$color-slate-900};
+  --bg-surface-elevated: #{$color-slate-850};
+  --bg-surface-hover: #{$color-slate-800};
+  --bg-surface-light: #{rgba($color-primary-500, 0.12)};
 
-  --border-card: #{$color-neon-periwinkle};
+  --bg-card: #{rgba($color-slate-900, 0.75)};
+  --bg-card-hover: #{rgba($color-slate-850, 0.9)};
+  --bg-glass: #{rgba($color-slate-900, 0.6)};
+  --bg-input: #{rgba($color-slate-850, 0.8)};
+  --bg-tag: #{rgba($color-primary-500, 0.12)};
 
-  --accent: #{$color-neon-periwinkle};
-  --accent-primary: #{$color-neon-periwinkle};
-  --accent-hover: #{$color-frost-blue};
+  // --- Borders & Outlines ---
+  --border-subtle: #{rgba($color-white, 0.06)};
+  --border-default: #{rgba($color-white, 0.1)};
+  --border-card: #{rgba($color-white, 0.08)};
+  --border-card-hover: #{rgba($color-primary-400, 0.35)};
+  --border-focus: #{$color-primary-400};
 
-  --text-primary: #{$color-frost-blue};
-  --text-secondary: #{rgba(171, 210, 250, 0.7)};
-  --text-inverse: #{$color-deep-night};
+  // --- Accent & Primary Brand ---
+  --accent: #{$color-primary-500};
+  --accent-primary: #{$color-primary-500};
+  --accent-hover: #{$color-primary-600};
+  --accent-light: #{$color-primary-400};
+  --accent-subtle: #{rgba($color-primary-500, 0.15)};
+  --accent-glow: #{rgba($color-primary-500, 0.35)};
+  --accent-gradient: linear-gradient(135deg, #{$color-primary-500} 0%, #{$color-accent-purple} 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #{$color-primary-600} 0%, #{$color-primary-500} 100%);
 
-  --diff-easy: #2dd4bf;
-  --diff-medium: #fbbf24;
-  --diff-hard: #f87171;
+  // --- Typography Colors ---
+  --text-primary: #{$color-slate-50};
+  --text-secondary: #{$color-slate-400};
+  --text-muted: #{$color-slate-500};
+  --text-inverse: #{$color-white};
+  --text-accent: #{$color-primary-300};
+
+  // --- Status & Difficulty Colors ---
+  --diff-easy: #{$color-success-light};
+  --diff-easy-bg: #{rgba($color-success, 0.14)};
+  --diff-easy-border: #{rgba($color-success, 0.3)};
+
+  --diff-medium: #{$color-warning-light};
+  --diff-medium-bg: #{rgba($color-warning, 0.14)};
+  --diff-medium-border: #{rgba($color-warning, 0.3)};
+
+  --diff-hard: #{$color-danger-light};
+  --diff-hard-bg: #{rgba($color-danger, 0.14)};
+  --diff-hard-border: #{rgba($color-danger, 0.3)};
+
+  --status-info: #{$color-info};
+
+  // --- Shadows & Elevations ---
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 25px -4px rgba(0, 0, 0, 0.5), 0 4px 12px -2px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 24px -4px #{rgba($color-primary-500, 0.35)};
+  --shadow-glow-sm: 0 0 12px -2px #{rgba($color-primary-500, 0.25)};
+
+  // --- Radii Tokens ---
+  --radius-xs: #{$border-radius-xs};
+  --radius-sm: #{$border-radius-sm};
+  --radius-md: #{$border-radius};
+  --radius-lg: #{$border-radius-lg};
+  --radius-xl: #{$border-radius-xl};
+  --radius-full: #{$border-radius-full};
+
+  // --- Backdrop Blur ---
+  --backdrop-blur: blur(14px);
 }

@@ -3,6 +3,7 @@ type Difficulty = 'easy' | 'medium' | 'hard'
 interface ICard {
 	id: string
 	deckId: string
+	position: number
 	question: string
 	answer: string
 	difficulty: Difficulty

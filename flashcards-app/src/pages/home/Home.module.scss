@@ -1,7 +1,72 @@
+@use "@styles/variables" as *;
+@use "@styles/mixins" as *;
+
+.homePage {
+  padding: $space-8 0;
+}
+
+.heroSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-6;
+  margin-bottom: $space-6;
+  @include glass(var(--bg-card), 14px, var(--border-card));
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-3;
+  }
+}
+
+.titleArea {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  h1 {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-extrabold;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: var(--text-secondary);
+  }
+}
 
 .list {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-	gap: 12px;
-	padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $space-4;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.emptyState {
+  @include flex-column;
+  @include flex-center;
+  gap: $space-3;
+  padding: $space-12 $space-4;
+  text-align: center;
+  @include glass(var(--bg-card), 12px, var(--border-card));
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+
+  h3 {
+    font-size: $font-size-lg;
+    color: var(--text-primary);
+  }
+
+  p {
+    font-size: $font-size-sm;
+    max-width: 360px;
+  }
 }

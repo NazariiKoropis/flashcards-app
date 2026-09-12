@@ -9,6 +9,7 @@ export type ButtonVariant =
 	| 'inverted'
 	| 'danger'
 	| 'icon'
+
 export type ButtonSize = 'sm' | 'md' | 'lg'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
