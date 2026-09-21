@@ -12,6 +12,7 @@ export default defineConfig({
 			'@components': path.resolve(import.meta.dirname, './src/components'),
 			'@layout': path.resolve(import.meta.dirname, './src/components/layout'),
 			'@shared': path.resolve(import.meta.dirname, './src/components/shared'),
+			'@schemas': path.resolve(import.meta.dirname, './src/schemas'),
 			'@ui': path.resolve(import.meta.dirname, './src/components/ui'),
 			'@config': path.resolve(import.meta.dirname, './src/config'),
 			'@constants': path.resolve(import.meta.dirname, './src/constants'),

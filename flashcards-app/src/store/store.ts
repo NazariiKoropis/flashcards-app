@@ -22,6 +22,8 @@ interface StoreState {
 	getDeckById: (deckId: string) => IDeck | undefined
 	updateCardDifficulty: (cardId: string, difficulty: Difficulty) => void
 	getCardsByDeckId: (deckId: string) => ICard[]
+	createDeck: (deck: IDeck) => boolean
+	updateDeck: (deck: IDeck) => boolean
 }
 
 const useStore = create<StoreState>()(
@@ -54,6 +56,21 @@ const useStore = create<StoreState>()(
 							: card
 					)
 				}))
+			},
+
+			createDeck: (deck: IDeck) => {
+				set(state => ({
+					decks: [...state.decks, deck]
+				}))
+				return true
+			},
+			updateDeck: (updatedDeck: IDeck) => {
+				set(state => ({
+					decks: state.decks.map(deck =>
+						deck.id === updatedDeck.id ? updatedDeck : deck
+					)
+				}))
+				return true
 			}
 		}),
 		{
@@ -63,4 +80,3 @@ const useStore = create<StoreState>()(
 )
 
 export default useStore
-

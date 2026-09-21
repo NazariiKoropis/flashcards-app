@@ -11,10 +11,16 @@ interface DeckCardProps {
 
 function DeckCard({ deck }: DeckCardProps) {
 	const navigate = useNavigate()
+	const isAdmin = true
 
 	const handleNavigate = (e: React.MouseEvent) => {
 		e.stopPropagation()
 		navigate(`/training/${deck.id}`)
+	}
+
+	const handleEditDeck = (e: React.MouseEvent) => {
+		e.stopPropagation()
+		navigate(`deck/${deck.id}/edit`)
 	}
 
 	return (
@@ -45,13 +51,24 @@ function DeckCard({ deck }: DeckCardProps) {
 					)}
 					<span>{deck.visibility}</span>
 				</div>
-				<Button
-					variant="primary"
-					size="sm"
-					onClick={handleNavigate}
-				>
-					Study now
-				</Button>
+				<div style={{ display: 'flex', gap: '10px' }}>
+					{isAdmin && (
+						<Button
+							variant="outline"
+							size="sm"
+							onClick={handleEditDeck}
+						>
+							Edit
+						</Button>
+					)}
+					<Button
+						variant="primary"
+						size="sm"
+						onClick={handleNavigate}
+					>
+						Study now
+					</Button>
+				</div>
 			</footer>
 		</div>
 	)

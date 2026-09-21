@@ -1,0 +1,204 @@
+@use "@styles/variables" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  width: 100%;
+}
+
+.labelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.counter {
+  font-size: $font-size-xs;
+  color: var(--text-muted);
+}
+
+// --- Верхня плашка з тегами ---
+.tagsPlate {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2;
+  background-color: var(--bg-surface);
+  border: 1px dashed var(--border-default);
+  border-radius: var(--radius-sm);
+  min-height: 40px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.tagBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background-color: var(--bg-surface-light);
+  border: 1px solid rgba(118, 146, 255, 0.4);
+  color: var(--accent);
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  border-radius: var(--radius-full);
+  line-height: 1;
+  transition: all $transition-fast;
+  box-shadow: 0 0 10px rgba(118, 146, 255, 0.1);
+
+  &:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 14px rgba(118, 146, 255, 0.25);
+  }
+}
+
+.tagText {
+  user-select: none;
+}
+
+.removeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 2px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color $transition-fast, transform $transition-fast, background-color $transition-fast;
+
+  &:hover:not(:disabled) {
+    color: var(--diff-hard);
+    background-color: rgba(239, 68, 68, 0.15);
+    transform: scale(1.15);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.removeIcon {
+  display: block;
+}
+
+// --- Поле вводу та кнопка ---
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  padding: 4px 6px 4px 12px;
+  transition: border-color $transition-fast, box-shadow $transition-fast, background-color $transition-fast;
+
+  &:focus-within {
+    border-color: var(--accent);
+    background-color: var(--bg-surface-elevated);
+    box-shadow: 0 0 0 3px rgba(118, 146, 255, 0.2), 0 0 16px -2px rgba(118, 146, 255, 0.25);
+  }
+
+  &.hasError {
+    border-color: var(--diff-hard);
+
+    &:focus-within {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--bg-surface);
+    border-color: var(--border-subtle);
+  }
+}
+
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: $font-size-sm;
+  color: var(--text-primary);
+  line-height: 1.4;
+  padding: 6px 0;
+  min-width: 120px;
+
+  &::placeholder {
+    color: var(--text-muted);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background: var(--accent-gradient);
+  color: var(--text-inverse);
+  border: none;
+  border-radius: var(--radius-xs);
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(118, 146, 255, 0.35);
+  animation: slideInRight 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform $transition-fast, box-shadow $transition-fast, background $transition-fast;
+
+  &:hover {
+    background: var(--accent-gradient-hover);
+    box-shadow: 0 4px 14px rgba(118, 146, 255, 0.55);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+.errorMessage {
+  font-size: $font-size-xs;
+  color: var(--diff-hard);
+  line-height: 1.3;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

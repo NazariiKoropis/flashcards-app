@@ -2,7 +2,7 @@ import Container from '@layout/container/Container'
 import Button from '@ui/Button'
 import { Plus, Search, Sparkles, User } from 'lucide-react'
 import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import styles from './Header.module.scss'
 
 interface NavLinkProps {
@@ -11,6 +11,7 @@ interface NavLinkProps {
 }
 
 function Header() {
+	const navigate = useNavigate()
 	const [isAuth, setIsAuth] = useState(false)
 
 	const navLinks: NavLinkProps[] = [
@@ -23,6 +24,10 @@ function Header() {
 			path: '/catalog'
 		}
 	]
+
+	const handleCreateDeck = () => {
+		navigate('deck/create')
+	}
 
 	return (
 		<header className={styles.header}>
@@ -63,6 +68,7 @@ function Header() {
 						<Button
 							variant="primary"
 							size="sm"
+							onClick={handleCreateDeck}
 						>
 							<Plus size={16} />
 							<span>Create</span>
