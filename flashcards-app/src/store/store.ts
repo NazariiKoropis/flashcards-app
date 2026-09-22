@@ -24,6 +24,9 @@ interface StoreState {
 	getCardsByDeckId: (deckId: string) => ICard[]
 	createDeck: (deck: IDeck) => boolean
 	updateDeck: (deck: IDeck) => boolean
+	createCard: (card: ICard) => boolean
+	updateCard: (card: ICard) => boolean
+	deleteCard: (cardId: string) => boolean
 }
 
 const useStore = create<StoreState>()(
@@ -68,6 +71,58 @@ const useStore = create<StoreState>()(
 				set(state => ({
 					decks: state.decks.map(deck =>
 						deck.id === updatedDeck.id ? updatedDeck : deck
+					)
+				}))
+				return true
+			},
+
+			createCard: (card: ICard) => {
+				set(state => ({
+					cards: [...state.cards, card],
+					decks: state.decks.map(deck =>
+						deck.id === card.deckId
+							? {
+									...deck,
+									cardCount: deck.cardCount + 1,
+									updatedAt: new Date().toISOString()
+								}
+							: deck
+					)
+				}))
+				return true
+			},
+
+			updateCard: (updatedCard: ICard) => {
+				set(state => ({
+					cards: state.cards.map(card =>
+						card.id === updatedCard.id ? updatedCard : card
+					),
+					decks: state.decks.map(deck =>
+						deck.id === updatedCard.deckId
+							? {
+									...deck,
+									updatedAt: new Date().toISOString()
+								}
+							: deck
+					)
+				}))
+				return true
+			},
+
+			deleteCard: (cardId: string) => {
+				const cardToDelete = get().cards.find(c => c.id === cardId)
+				if (!cardToDelete) return false
+
+				set(state => ({
+					cards: state.cards.filter(c => c.id !== cardId),
+					decks: state.decks.map(deck =>
+						deck.id === cardToDelete.deckId
+							? {
+									...deck,
+									cardCount: Math.max(0, deck.cardCount - 1),
+									updatedAt: new Date().toISOString()
+								}
+							: deck
 					)
 				}))
 				return true

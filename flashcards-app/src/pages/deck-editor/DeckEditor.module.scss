@@ -395,6 +395,39 @@
   }
 }
 
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+  flex-shrink: 0;
+}
+
+.cardActionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-surface-light);
+    border-color: var(--border-default);
+  }
+
+  &.danger:hover {
+    color: var(--diff-hard);
+    background-color: var(--diff-hard-bg);
+    border-color: var(--diff-hard-border);
+  }
+}
+
 // --- Not Found State ---
 .notFoundCard {
   @include flex-column;
